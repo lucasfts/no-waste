@@ -1,0 +1,27 @@
+stages:
+    - build
+    - unit_test
+    - deploy
+    - integration_test
+    
+    
+build: 
+    stage: build
+    script:
+        - echo "executando a build"
+        
+unit_test:
+    stage: unit_test
+    script:
+        - echo "executando testes unitários"
+        
+deploy:
+    stage: deploy
+    script:
+        - echo "executando o deploy"
+        
+integration_test:
+    stage: integration_test
+    script: 
+        - echo "executando testes de integração"
+        
