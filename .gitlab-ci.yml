@@ -9,6 +9,7 @@ build:
     stage: build
     script:
         - echo "executando a build"
+        - npm install
         
 unit_test:
     stage: unit_test
