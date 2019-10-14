@@ -1,28 +1,17 @@
+image: node:latest
+
 stages:
-    - build
-    - unit_test
-    - deploy
-    - integration_test
-    
-    
-build: 
-    stage: build
-    script:
-        - echo "executando a build"
-        - npm install
-        
-unit_test:
-    stage: unit_test
-    script:
-        - echo "executando testes unitários"
-        
-deploy:
-    stage: deploy
-    script:
-        - echo "executando o deploy"
-        
-integration_test:
-    stage: integration_test
-    script: 
-        - echo "executando testes de integração"
+  - production
+  
+production:
+  type: deploy
+  stage: production
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=node-heroku-dpl --api-key=$HEROKU_API_KEY
+  only:
+    - master
         
