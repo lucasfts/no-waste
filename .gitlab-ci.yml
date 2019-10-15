@@ -16,6 +16,7 @@ production:
     - cd dist
     - ls
     - cd 'no-waste-app'
+    - ls
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
