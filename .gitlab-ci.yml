@@ -1,14 +1,29 @@
-image: ruby:latest
+image: node:latest
 
 stages:
+  - build
   - deploy
+  
+build:
+  type: build
+  stage: build
+  image: node:latest
+  script:
+    - cd 'no-waste-app'
+    - npm install
+    - npm install -g @angular/cli
+    - ng build --aot --prod
+  only:
+    - master
   
 deploy:
   type: deploy
   stage: deploy
-  image: ruby:latest
+  image: node:latest
   script:
     - cd 'no-waste-app'
+    - cp server.js dist
+    - cd dist
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
