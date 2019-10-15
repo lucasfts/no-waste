@@ -10,7 +10,6 @@ production:
   script:
     - cd no-waste-app
     - npm install
-    - ng build
     - cd dist/no-waste-app
     - apt-get update -qy
     - apt-get install -y ruby-dev
