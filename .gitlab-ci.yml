@@ -1,25 +1,17 @@
 image: node:latest
 
 stages:
-  - build
   - deploy
   
-build:
-  type: build
-  stage: build
-  script:
-    - cd 'no-waste-app'
-    - npm install
-    - npm install -g @angular/cli
-    - ng build --aot --prod
-  only:
-    - master
   
 deploy:
   type: deploy
   stage: deploy
   script:
     - cd 'no-waste-app'
+    - npm install
+    - npm install -g @angular/cli
+    - ng build --aot --prod
     - cp server.js dist
     - cd dist
     - apt-get update -qy
