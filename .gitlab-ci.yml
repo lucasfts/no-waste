@@ -12,7 +12,7 @@ production:
     - npm install
     - npm install -g @angular/cli
     - ng build
-    - cd dist/no-waste-app
+    - cd dist
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
