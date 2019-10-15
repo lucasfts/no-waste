@@ -1,21 +1,28 @@
 image: node:latest
 
 stages:
-  - production
+  - build
+  - deploy
   
-production:
+build:
   type: deploy
-  stage: production
+  stage: build
   image: node:latest
   script:
     - cd no-waste-app
     - npm install
     - npm install -g @angular/cli
     - ng build
-    - ls
-    - cd dist
-    - ls
-    - cd 'no-waste-app'
+  only:
+    - master
+        
+
+deploy:
+  type: deploy
+  stage: deploy
+  image: ruby:latest
+  script:
+    - cd 'no-waste-app/dist/no-waste-app'
     - ls
     - apt-get update -qy
     - apt-get install -y ruby-dev
