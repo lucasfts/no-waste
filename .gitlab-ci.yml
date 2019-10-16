@@ -1,14 +1,37 @@
 image: node:latest
 
+cache:
+    paths:
+      - deploy-folder 
+
 stages:
+  - build
   - deploy
   
-  
+build:
+  type: build
+  stage: build
+  script:
+    - cd 'no-waste-app'
+    - npm install
+    - npm install -g @angular/cli
+    - ng build --aot --prod
+    - mkdir deploy-folder
+    - cp -R dist deploy-folder
+    - cp server.js deploy-folder
+    - cp package.json deploy-folder
+    - cd deploy-folder
+    - ls -l
+    - chmod 777 *
+    - ls -l
+  only:
+    - master
+          
 deploy:
   type: deploy
   stage: deploy
   script:
-    - cd 'no-waste-app'
+    - cd deploy-folder
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
