@@ -15,6 +15,7 @@ deploy:
     - mkdir deploy-folder
     - cp -R dist deploy-folder
     - cp server.js deploy-folder
+    - cp package.json deploy-folder
     - cd deploy-folder
     - ls
     - apt-get update -qy
