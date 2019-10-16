@@ -12,8 +12,11 @@ deploy:
     - npm install
     - npm install -g @angular/cli
     - ng build --aot --prod
-    - cp server.js dist
-    - cd dist
+    - mkdir deploy-folder
+    - cp -R dist deploy-folder
+    - cp server.js deploy-folder
+    - cd deploy-folder
+    - ls
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
