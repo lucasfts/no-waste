@@ -2,7 +2,7 @@ image: node:latest
 
 cache:
     paths:
-      - deploy-folder 
+      - 'no-waste-app/deploy-folder'
 
 stages:
   - build
@@ -32,7 +32,9 @@ deploy:
   stage: deploy
   script:
     - ls
-    - cd 'no-waste-app/deploy-folder'
+    - cd 'no-waste-app'
+    - ls
+    - cd 'deploy-folder'
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
