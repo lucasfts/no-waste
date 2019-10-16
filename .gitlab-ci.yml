@@ -6,6 +6,7 @@ cache:
 
 stages:
   - build
+  - test
   - deploy
   
 build:
@@ -27,15 +28,21 @@ build:
     - ls -l
   only:
     - master
+    
+test:
+  type: test
+  stage: test
+  script:
+    - cd 'no-waste-app/deploy-folder'
+    - ls
+  only:
+    - master
           
 deploy:
   type: deploy
   stage: deploy
   script:
-    - ls
     - cd 'no-waste-app'
-    - ls
-    - cd 'deploy-folder'
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
