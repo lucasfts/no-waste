@@ -5,6 +5,7 @@ cache:
       - 'no-waste-app/deploy-folder'
 
 stages:
+  - build
   - deploy
   
 build:
@@ -15,6 +16,7 @@ build:
     - npm install
     - npm install -g @angular/cli
     - ng build --aot --prod
+    - rm -rf deploy-folder
     - mkdir deploy-folder
     - cp -R dist deploy-folder
     - cp server.js deploy-folder
