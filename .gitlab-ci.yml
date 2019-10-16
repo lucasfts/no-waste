@@ -21,10 +21,9 @@ build:
     - mkdir deploy-folder
     - cp -R dist deploy-folder
     - cp server.js deploy-folder
+    - cp package.json deploy-folder
     - cd deploy-folder
-    - npm init -f
     - npm install
-    - npm install --save express
   only:
     - master
     
