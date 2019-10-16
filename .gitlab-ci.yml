@@ -17,7 +17,9 @@ deploy:
     - cp server.js deploy-folder
     - cp package.json deploy-folder
     - cd deploy-folder
-    - ls
+    - ls -l
+    - chmod 777 *
+    - ls -l
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
