@@ -23,9 +23,8 @@ build:
     - cp server.js deploy-folder
     - cd deploy-folder
     - npm init -f
-    - ls -l
-    - chmod 777 *
-    - ls -l
+    - npm install
+    - npm install --save express
   only:
     - master
     
