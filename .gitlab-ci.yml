@@ -32,7 +32,7 @@ deploy:
   stage: deploy
   script:
     - ls
-    - cd deploy-folder
+    - cd 'no-waste-app/deploy-folder'
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
