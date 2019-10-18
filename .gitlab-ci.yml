@@ -1,6 +1,6 @@
 stages:
-    - deploy-api
-    - deploy-app
+    - deploy_api
+    - deploy_app
     
-deploy-api:
+deploy_api:
     - file: '/no-waste-app/.gitlab-ci.yml'
