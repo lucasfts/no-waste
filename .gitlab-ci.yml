@@ -1,2 +1,3 @@
 include:
     - local: '/no-waste-api/.gitlab-ci.yml'
+    - local: '/no-waste-app/.gitlab-ci.yml'
