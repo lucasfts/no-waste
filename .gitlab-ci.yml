@@ -1,50 +1,6 @@
-image: node:latest
-
-cache:
-    paths:
-      - 'no-waste-app/deploy-folder'
-
 stages:
-  - build
-  - test
-  - deploy
-  
-build:
-  type: build
-  stage: build
-  script:
-    - cd 'no-waste-app'
-    - npm install
-    - npm install -g @angular/cli
-    - ng build --aot --prod
-    - rm -rf deploy-folder
-    - mkdir deploy-folder
-    - cp -R dist deploy-folder
-    - cp server.js deploy-folder
-    - cp package.json deploy-folder
-    - cd deploy-folder
-    - npm install
-  only:
-    - master
+    - deploy-api
+    - deploy-app
     
-test:
-  type: test
-  stage: test
-  script:
-    - cd 'no-waste-app/deploy-folder'
-    - ls
-  only:
-    - master
-          
-deploy:
-  type: deploy
-  stage: deploy
-  script:
-    - cd 'no-waste-app'
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=no-waste-app --api-key=$HEROKU_API_KEY
-  only:
-    - master
-        
+deploy-api:
+    - file: '/no-waste-app/.gitlab-ci.yml'
