@@ -4,7 +4,7 @@ include:
       file: '/no-waste-api/.gitlab-ci.yml'
       only:
        changes:
-         - "no-waste-api.*"
+         - no-waste-api
 
 
     - project: 'fttbois/no-waste'
@@ -12,4 +12,4 @@ include:
       file: '/no-waste-app/.gitlab-ci.yml'
       only:
        changes:
-         - "no-waste-app/.*"
+         - no-waste-app
