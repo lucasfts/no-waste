@@ -2,5 +2,5 @@ include:
     - project: 'fttbois/no-waste'
       ref: master
       file: 
-        - "no"-waste-api/.gitlab-ci.yml"
+        - "no-waste-api/.gitlab-ci.yml"
         - "no-waste-app/.gitlab-ci.yml"
