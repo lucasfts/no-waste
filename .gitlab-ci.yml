@@ -1,3 +1,8 @@
 include:
-    - local: '/no-waste-api/.gitlab-ci.yml'
-    - local: '/no-waste-app/.gitlab-ci.yml'
+    - project: 'no-waste-api'
+      ref: master
+      file: '/no-waste-api/.gitlab-ci.yml'
+
+    - project: 'no-waste-app'
+      ref: master
+      file: '/no-waste-app/.gitlab-ci.yml'
