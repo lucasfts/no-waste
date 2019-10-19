@@ -30,7 +30,6 @@ build-app:
     refs:
       - master
 
-
     
 test-app:
   type: test
