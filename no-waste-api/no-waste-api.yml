@@ -4,7 +4,6 @@ stages:
   - deploy-api
 
 deploy-api:
-  stage: deploy-api
   script:
     - cd 'no-waste-api'
     - apt-get update -qy
