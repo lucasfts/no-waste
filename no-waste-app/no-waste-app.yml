@@ -26,7 +26,7 @@ build-app:
     - npm install
   only:
     changes:
-      - ./no-waste-app/**
+      - no-waste-app/*
     refs:
       - master
 
