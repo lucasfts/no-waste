@@ -5,11 +5,11 @@ cache:
       - 'no-waste-app/deploy-folder'
 
 stages:
-  - build
-  - test
-  - deploy
+  - build-app
+  - test-app
+  - deploy-app
   
-build:
+build-app:
   type: build
   stage: build
   script:
@@ -27,7 +27,7 @@ build:
   only:
     - master
     
-test:
+test-app:
   type: test
   stage: test
   script:
@@ -36,7 +36,7 @@ test:
   only:
     - master
           
-deploy:
+deploy-app:
   type: deploy
   stage: deploy
   script:
