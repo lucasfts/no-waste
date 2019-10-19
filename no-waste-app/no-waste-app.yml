@@ -11,7 +11,7 @@ stages:
   
 build-app:
   type: build
-  stage: build
+  stage: build-app
   script:
     - cd 'no-waste-app'
     - npm install
@@ -29,7 +29,7 @@ build-app:
     
 test-app:
   type: test
-  stage: test
+  stage: test-app
   script:
     - cd 'no-waste-app/deploy-folder'
     - ls
@@ -38,7 +38,7 @@ test-app:
           
 deploy-app:
   type: deploy
-  stage: deploy
+  stage: deploy-app
   script:
     - cd 'no-waste-app'
     - apt-get update -qy
