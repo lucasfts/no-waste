@@ -14,7 +14,7 @@ build-app:
   stage: build
   script:
     - >
-    if git diff $LAST_COMMIT HEAD --name-only|grep no-waste-app; then
+    if git diff $LAST_COMMIT --name-only|grep no-waste-app; then
         - cd 'no-waste-app'
         - npm install
         - npm install -g @angular/cli
@@ -35,7 +35,7 @@ test-app:
   stage: test
   script:
     - >
-    if git diff $LAST_COMMIT HEAD --name-only|grep no-waste-app; then
+    if git diff $LAST_COMMIT --name-only|grep no-waste-app; then
         - cd 'no-waste-app/deploy-folder'
         - ls
      fi;
@@ -47,7 +47,7 @@ deploy-app:
   stage: deploy
   script:
    - >
-    if git diff $LAST_COMMIT HEAD --name-only|grep no-waste-app; then
+    if git diff $LAST_COMMIT --name-only|grep no-waste-app; then
         - cd 'no-waste-app'
         - apt-get update -qy
         - apt-get install -y ruby-dev
