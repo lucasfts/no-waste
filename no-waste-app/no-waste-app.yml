@@ -39,7 +39,10 @@ test-app:
     - cd 'no-waste-app/deploy-folder'
     - ls
   only:
-    - master
+    changes:
+      - no-waste-app/*
+    refs:
+      - master
           
 deploy-app:
   type: deploy
@@ -51,4 +54,7 @@ deploy-app:
     - gem install dpl
     - dpl --provider=heroku --app=no-waste-app --api-key=$HEROKU_API_KEY
   only:
-    - master
+    changes:
+      - no-waste-app/*
+    refs:
+      - master
