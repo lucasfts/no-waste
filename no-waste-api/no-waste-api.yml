@@ -7,7 +7,7 @@ stages:
 
 build-api:
   type: build
-  stage: build-api
+  stage: build
   script:
     - cd 'no-waste-api'
   only:
@@ -15,7 +15,7 @@ build-api:
 
 test-api:
   type: test
-  stage: test-api
+  stage: test
   script:
     - cd 'no-waste-api'
   only:
@@ -23,7 +23,7 @@ test-api:
 
 deploy-api:
   type: deploy
-  stage: deploy-api
+  stage: deploy
   script:
     - cd 'no-waste-api'
     - apt-get update -qy
