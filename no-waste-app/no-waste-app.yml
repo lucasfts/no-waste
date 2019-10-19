@@ -13,17 +13,20 @@ build-app:
   type: build
   stage: build
   script:
-    - cd 'no-waste-app'
-    - npm install
-    - npm install -g @angular/cli
-    - ng build --aot --prod
-    - rm -rf deploy-folder
-    - mkdir deploy-folder
-    - cp -R dist deploy-folder
-    - cp server.js deploy-folder
-    - cp package.json deploy-folder
-    - cd deploy-folder
-    - npm install
+    - >
+    if git diff HEAD~ --name-only|grep no-waste-app; then
+        - cd 'no-waste-app'
+        - npm install
+        - npm install -g @angular/cli
+        - ng build --aot --prod
+        - rm -rf deploy-folder
+        - mkdir deploy-folder
+        - cp -R dist deploy-folder
+        - cp server.js deploy-folder
+        - cp package.json deploy-folder
+        - cd deploy-folder
+        - npm install
+    fi;
   only:
     - master
     
@@ -31,8 +34,11 @@ test-app:
   type: test
   stage: test
   script:
-    - cd 'no-waste-app/deploy-folder'
-    - ls
+    - >
+    if git diff HEAD~ --name-only|grep no-waste-app; then
+        - cd 'no-waste-app/deploy-folder'
+        - ls
+     fi;
   only:
     - master
           
@@ -40,10 +46,13 @@ deploy-app:
   type: deploy
   stage: deploy
   script:
-    - cd 'no-waste-app'
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=no-waste-app --api-key=$HEROKU_API_KEY
+   - >
+    if git diff HEAD~ --name-only|grep no-waste-app; then
+        - cd 'no-waste-app'
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
+        - dpl --provider=heroku --app=no-waste-app --api-key=$HEROKU_API_KEY
+    fi;
   only:
     - master
