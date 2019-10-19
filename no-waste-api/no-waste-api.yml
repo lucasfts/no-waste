@@ -1,7 +1,25 @@
 image: node:latest
 
 stages:
+  - build-api
+  - test-api
   - deploy-api
+
+build-api:
+  type: deploy
+  stage: deploy
+  script:
+    - cd 'no-waste-api'
+  only:
+    - master
+
+deploy-api:
+  type: deploy
+  stage: deploy
+  script:
+    - cd 'no-waste-api'
+  only:
+    - master
 
 deploy-api:
   type: deploy
