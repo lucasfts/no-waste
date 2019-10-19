@@ -6,16 +6,16 @@ stages:
   - deploy-api
 
 build-api:
-  type: deploy
-  stage: deploy
+  type: build
+  stage: build
   script:
     - cd 'no-waste-api'
   only:
     - master
 
-deploy-api:
-  type: deploy
-  stage: deploy
+test-api:
+  type: test
+  stage: test
   script:
     - cd 'no-waste-api'
   only:
