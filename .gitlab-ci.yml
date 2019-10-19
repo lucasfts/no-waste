@@ -1,6 +1,8 @@
 include:
     - project: 'fttbois/no-waste'
       ref: master
-      file: 
-        - "no-waste-api/no-waste-api.yml"
-        - "no-waste-app/no-waste-app.yml"
+      file: no-waste-api/no-waste-api.yml
+      
+    - project: 'fttbois/no-waste'
+      ref: master
+      file: no-waste-app/no-waste-app.yml
