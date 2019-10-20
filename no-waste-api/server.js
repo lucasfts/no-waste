@@ -13,5 +13,5 @@ return false;
 }
 
 app.listen(port, function () {
-    console.log(`app listening on port ${port}`)
+    console.log(`api listening on port ${port}`)
 })
