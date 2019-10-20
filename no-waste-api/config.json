@@ -1,0 +1,5 @@
+{
+    "JWT_KEY": "FTTBOIS_NO_WASTE_JWT_KEY",
+    "BCRYPT_SALT": 10,
+    "MONGODB_CONNECTION_STRING": "mongodb://dbadmin:hJ8M4e9Cz9WQHSBg@nowastecluster-shard-00-00-ixfff.mongodb.net:27017,nowastecluster-shard-00-01-ixfff.mongodb.net:27017,nowastecluster-shard-00-02-ixfff.mongodb.net:27017/no-waste?ssl=true&replicaSet=NoWasteCluster-shard-0&authSource=admin&retryWrites=true&w=majority"
+}
