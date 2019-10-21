@@ -1,11 +1,11 @@
-<mat-card >
-  <form class="form-container" >
-      <mat-form-field>
-          <input matInput placeholder="E-mail">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Senha">
-        </mat-form-field>
-        <button mat-stroked-button >Login</button>
+<mat-card>
+  <form (submit)="login(loginForm)" #loginForm="ngForm" class="form-container">
+    <mat-form-field>
+      <input matInput ngModel placeholder="E-mail" required name="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput ngModel placeholder="Senha" required name="password">
+    </mat-form-field>
+    <button mat-stroked-button>Login</button>
   </form>
 </mat-card>
