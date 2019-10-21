@@ -51,7 +51,7 @@ deploy-app:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=no-waste-app --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=nowasteapp --api-key=$HEROKU_APP_KEY
   only:
     changes:
       - no-waste-app/*
