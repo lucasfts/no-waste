@@ -42,7 +42,7 @@ export class UserService {
           type: 'success',
           confirmButtonText: 'Ok'
         }).then(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         });
       }, error => {
         Swal.fire({
@@ -88,7 +88,7 @@ export class UserService {
     this.clearAuthData();
     clearTimeout(this.tokenTimer);
     this.userAuthListener.next(this.getIsAuth());
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   private setAuthTimer(duration: number) {

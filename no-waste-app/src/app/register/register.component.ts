@@ -6,7 +6,10 @@ import { User } from 'src/models/user.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: [
+    '../login/login.component.css',
+    './register.component.css'
+  ]
 })
 export class RegisterComponent implements OnInit {
 
@@ -15,7 +18,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(form: NgForm){
+  register(form: NgForm) {
     console.log(form.value);
     if (form.invalid) {
       return;

@@ -5,7 +5,10 @@ import { Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: [
+    '../../assets/css/no-waste.css',
+    './header.component.css'
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;

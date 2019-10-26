@@ -7,7 +7,8 @@ import { AppGuard } from './app.guard';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,canActivate: [AppGuard] },
+  // { path: '', component: HomeComponent,canActivate: [AppGuard] },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

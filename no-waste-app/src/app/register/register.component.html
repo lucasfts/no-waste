@@ -1,17 +1,23 @@
-<mat-card>
-  <form (submit)="register(registerForm)" #registerForm="ngForm" class="form-container">
-    <mat-form-field>
-      <input matInput ngModel placeholder="Nome" required name="name">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput ngModel placeholder="E-mail" required name="email" type="email">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput ngModel placeholder="Senha" required name="password" type="password">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput ngModel placeholder="Confirmar Senha" required name="confirmPassword" type="password">
-    </mat-form-field>
-    <button mat-stroked-button>Login</button>
-  </form>
-</mat-card>
+<div class="main-div">
+  <mat-card>
+    <div class="divHome">
+      <a routerLink="/" class="linkHome">No-Waste</a>
+    </div>
+    <form (submit)="register(registerForm)" #registerForm="ngForm" class="form-container">
+        <span class="lblTitulo">Registre-se</span>
+      <mat-form-field>
+        <input matInput ngModel placeholder="Nome" required name="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput ngModel placeholder="E-mail" required name="email" type="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput ngModel placeholder="Senha" required name="password" type="password">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput ngModel placeholder="Confirmar Senha" required name="confirmPassword" type="password">
+      </mat-form-field>
+      <button mat-stroked-button>Registre-se</button>
+    </form>
+  </mat-card>
+</div>
