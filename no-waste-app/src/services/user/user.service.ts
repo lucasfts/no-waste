@@ -5,6 +5,7 @@ import { User } from 'src/models/user.model';
 import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2';
 import { Login } from 'src/models/login.model';
+import { Subject } from 'rxjs';
 
 const API_URL = `${environment.API_URL}/users`;
 
@@ -13,8 +14,13 @@ const API_URL = `${environment.API_URL}/users`;
 })
 export class UserService {
   private tokenTimer: any;
+  private userAuthListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
+
+  getUserListener() {
+    return this.userAuthListener.asObservable();
+  }
 
   getIsAuth() {
     const authData = this.getAuthData();
@@ -45,7 +51,6 @@ export class UserService {
           type: 'error',
           confirmButtonText: 'Ok'
         });
-        // this.authStatusListener.next(false);
       });
   }
 
@@ -61,15 +66,28 @@ export class UserService {
           const expirationDate = new Date(now.getTime() + (expiresInDuration * 1000));
           console.log(expirationDate);
           this.saveAuthData(token, expirationDate, response.userId);
+          this.userAuthListener.next(this.getIsAuth());
           this.router.navigate(['/']);
         }
       }, error => {
+        this.userAuthListener.next(this.getIsAuth());
+        let alertMessage = error.message;
+        if (error.status === 404) {
+          alertMessage = 'Usuário ou senha inválidos';
+        }
+        Swal.fire({
+          title: 'Error!',
+          text: alertMessage,
+          type: 'error',
+          confirmButtonText: 'Ok'
+        });
       });
   }
 
   logout() {
     this.clearAuthData();
     clearTimeout(this.tokenTimer);
+    this.userAuthListener.next(this.getIsAuth());
     this.router.navigate(['/login']);
   }
 

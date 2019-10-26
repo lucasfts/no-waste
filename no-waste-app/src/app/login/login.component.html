@@ -1,10 +1,10 @@
 <mat-card>
   <form (submit)="login(loginForm)" #loginForm="ngForm" class="form-container">
     <mat-form-field>
-      <input matInput ngModel placeholder="E-mail" required name="email">
+      <input matInput ngModel placeholder="E-mail" required name="email" type="email">
     </mat-form-field>
     <mat-form-field>
-      <input matInput ngModel placeholder="Senha" required name="password">
+      <input matInput ngModel placeholder="Senha" required name="password" type="password" >
     </mat-form-field>
     <button mat-stroked-button>Login</button>
   </form>
