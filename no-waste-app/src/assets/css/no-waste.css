@@ -1,0 +1,34 @@
+.linkHome {
+  color: #13ce66;
+  font-family: Grand Hotel;
+  font-size: 37px;
+  font-weight: 400;
+  text-align: left;
+  text-decoration: none;
+}
+
+.bgBlack {
+  background-color: black;
+  color: white;
+}
+
+.bgDarkGray{
+  background-color: #47525E;
+  color: white;
+}
+
+.textGreen {
+  color: #13ce66;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.w-50{
+  width: 50%;;
+}
+
+.text-center{
+  text-align: center;
+}

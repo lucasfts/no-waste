@@ -1,10 +1,14 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="bgBlack" >
 
-  <a mat-button routerLink="/">
-    <h2>No Waste App</h2>
+  <a mat-button routerLink="/" routerLinkActive="bgBlack">
+    <span class="linkHome" >No-Waste</span>
   </a>
   <span class="flex-spacer"></span>
-  <a *ngIf="!isAuthenticated" mat-button routerLink="/login">Login</a>
-  <a *ngIf="!isAuthenticated" mat-button routerLink="/register">Register</a>
-  <a *ngIf="isAuthenticated" mat-button (click)="logout()">Logout</a>
+  <a *ngIf="!isAuthenticated" mat-button routerLink="/" routerLinkActive="textGreen">
+    Página inicial
+  </a>
+  <a *ngIf="!isAuthenticated" mat-button routerLink="/about" routerLinkActive="textGreen">Sobre</a>
+  <a *ngIf="!isAuthenticated" mat-button routerLink="/login" routerLinkActive="textGreen">Entrar</a>
+  <a *ngIf="!isAuthenticated" mat-button routerLink="/register" routerLinkActive="textGreen">Registre-se</a>
+  <a *ngIf="isAuthenticated" mat-button (click)="logout()" routerLinkActive="textGreen">Sair</a>
 </mat-toolbar>

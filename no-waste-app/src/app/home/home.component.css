@@ -1,0 +1,39 @@
+mat-grid-list{
+  min-height: 100vh;
+}
+
+.firstRow{
+  /* background-image: url('../../assets/images/wallpaper.png'); */
+  background-color: rgba(19, 206, 102, 0.91);
+}
+.no-waste-content{
+  max-width: 600px;
+  margin-left: 50px;
+}
+.btnRegistrar{
+  margin-top: 10px;
+}
+
+div.btnRegistrar a{
+  padding: 3px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.lblFatos{
+  color: #47525E;
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 36px;
+  width: 413px;
+  text-align: center;
+}
+
+.no-waste-video{
+  background-color: #E0E6ED;
+  max-width: 75%;
+  height: 250px;
+  margin:auto;
+}
+

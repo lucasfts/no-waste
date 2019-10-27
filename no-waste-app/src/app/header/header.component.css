@@ -1,6 +1,11 @@
-.float-right{
-  float: right;;
+mat-toolbar{
+  padding: 40px;
 }
+
 .flex-spacer{
   flex: 1 1 auto;
+}
+
+.linkHome{
+  font-size: 30px;
 }

@@ -1,1 +1,33 @@
-<h1 *ngIf="user" >Bem vindo, {{user.name}}</h1>
+<mat-grid-list cols="1" rows="3" rowHeight="100px">
+    <mat-grid-tile rowspan="4" class="firstRow alignLeft">
+        <!-- Bem vindo, {{user.name}} -->
+        <div class="w-100">
+          <div class="no-waste-content">
+              <h1>
+                  Evite o desperdício de alimentos na sua instituição.
+              </h1>
+              <span>
+                  Registre-se e comece a utilizar o no-waste. Com recursos de inteligência artificial, ajudamos você a evitar o desperdício de alimentos.
+              </span>
+              <div class="btnRegistrar">
+                  <a mat-button routerLink="/register" class="bgDarkGray">Registre-se</a>
+              </div>
+          </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="3">
+        <!-- Bem vindo, {{user.name}} -->
+        <div class="w-50 text-center">
+            <span class="lblFatos">
+                Fatos sobre o desperdício de alimentos no Brasil
+            </span>
+        </div>
+        <div class="w-50">
+            <div class="no-waste-video">
+                <h2 *ngIf="user" class="text-center">
+                  {{user.name}}
+                </h2>
+            </div>
+          </div>
+    </mat-grid-tile>
+  </mat-grid-list>

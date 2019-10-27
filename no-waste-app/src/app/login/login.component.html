@@ -1,11 +1,18 @@
-<mat-card>
-  <form (submit)="login(loginForm)" #loginForm="ngForm" class="form-container">
-    <mat-form-field>
-      <input matInput ngModel placeholder="E-mail" required name="email">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput ngModel placeholder="Senha" required name="password">
-    </mat-form-field>
-    <button mat-stroked-button>Login</button>
-  </form>
-</mat-card>
+<div class="main-div">
+
+  <mat-card>
+    <div class="divHome">
+      <a routerLink="/" class="linkHome" >No-Waste</a>
+    </div>
+    <form (submit)="login(loginForm)" #loginForm="ngForm" class="form-container">
+      <span class="lblTitulo">Entrar</span>
+      <mat-form-field>
+        <input matInput ngModel placeholder="E-mail" required name="email" type="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput ngModel placeholder="Senha" required name="password" type="password" >
+      </mat-form-field>
+      <button mat-stroked-button>Entrar</button>
+    </form>
+  </mat-card>
+</div>
