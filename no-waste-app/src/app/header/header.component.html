@@ -1,6 +1,6 @@
 <mat-toolbar class="bgBlack" >
 
-  <a mat-button routerLink="/" routerLinkActive="bgBlack">
+  <a mat-button>
     <span class="linkHome" >No-Waste</span>
   </a>
   <span class="flex-spacer"></span>
@@ -10,5 +10,8 @@
   <a *ngIf="!isAuthenticated" mat-button routerLink="/about" routerLinkActive="textGreen">Sobre</a>
   <a *ngIf="!isAuthenticated" mat-button routerLink="/login" routerLinkActive="textGreen">Entrar</a>
   <a *ngIf="!isAuthenticated" mat-button routerLink="/register" routerLinkActive="textGreen">Registre-se</a>
+  <a *ngIf="isAuthenticated" mat-button routerLink="/dashboard" routerLinkActive="textGreen">Dashboard</a>
+  <a *ngIf="isAuthenticated" mat-button routerLink="/new-record" routerLinkActive="textGreen">Novo Registro</a>
+  <a *ngIf="isAuthenticated" mat-button routerLink="/history" routerLinkActive="textGreen">Histórico</a>
   <a *ngIf="isAuthenticated" mat-button (click)="logout()" routerLinkActive="textGreen">Sair</a>
 </mat-toolbar>
