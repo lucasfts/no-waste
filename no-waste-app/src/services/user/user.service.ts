@@ -67,7 +67,7 @@ export class UserService {
           console.log(expirationDate);
           this.saveAuthData(token, expirationDate, response.userId);
           this.userAuthListener.next(this.getIsAuth());
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         }
       }, error => {
         this.userAuthListener.next(this.getIsAuth());
