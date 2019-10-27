@@ -5,7 +5,7 @@ import { User } from 'src/models/user.model';
 import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2';
 import { Login } from 'src/models/login.model';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 
 const API_URL = `${environment.API_URL}/users`;
 
@@ -29,7 +29,7 @@ export class UserService {
 
   getCurrentUser() {
     const authData = this.getAuthData();
-    if (!authData) return;
+    if (!authData) return of(null);
     return this.http.get(API_URL + '/' + authData.userId);
   }
 

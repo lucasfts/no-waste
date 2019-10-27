@@ -7,6 +7,7 @@ import { User } from 'src/models/user.model';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: [
+    '../../assets/css/no-waste.css',
     '../login/login.component.css',
     './register.component.css'
   ]

@@ -9,6 +9,6 @@
   </a>
   <a *ngIf="!isAuthenticated" mat-button routerLink="/about" routerLinkActive="textGreen">Sobre</a>
   <a *ngIf="!isAuthenticated" mat-button routerLink="/login" routerLinkActive="textGreen">Entrar</a>
-  <a *ngIf="!isAuthenticated" mat-button routerLink="/register" routerLinkActive="textGreen">Registrar-se</a>
+  <a *ngIf="!isAuthenticated" mat-button routerLink="/register" routerLinkActive="textGreen">Registre-se</a>
   <a *ngIf="isAuthenticated" mat-button (click)="logout()" routerLinkActive="textGreen">Sair</a>
 </mat-toolbar>

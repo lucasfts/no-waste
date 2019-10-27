@@ -1,12 +1,7 @@
 mat-grid-list{
   min-height: 100vh;
-  margin-top: -100px;
-  z-index: -1;
 }
-.no-waste-info{
-  width: 100%;
-  margin-top: 100px;
-}
+
 .firstRow{
   /* background-image: url('../../assets/images/wallpaper.png'); */
   background-color: rgba(19, 206, 102, 0.91);
@@ -18,6 +13,13 @@ mat-grid-list{
 .btnRegistrar{
   margin-top: 10px;
 }
+
+div.btnRegistrar a{
+  padding: 3px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .lblFatos{
   color: #47525E;
   font-family: Lato;
@@ -31,6 +33,7 @@ mat-grid-list{
 .no-waste-video{
   background-color: #E0E6ED;
   max-width: 75%;
-  height: 200px;
+  height: 250px;
   margin:auto;
 }
+
