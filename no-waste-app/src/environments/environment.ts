@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   API_URL: 'http://localhost:3000',
+  IBGE_API: 'https://servicodados.ibge.gov.br/api/v1',
+  CLIMATEMPO_API: 'http://apiadvisor.climatempo.com.br/api/v1',
+  CLIMATEMPO_TOKEN: 'c17443a416002327771a7df34d8e3c34',
 };
 
 /*

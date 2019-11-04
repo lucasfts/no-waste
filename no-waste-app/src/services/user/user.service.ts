@@ -33,6 +33,10 @@ export class UserService {
     return this.http.get(API_URL + '/' + authData.userId);
   }
 
+  getUserId(){
+    return localStorage.getItem('userId');
+  }
+
   createUser(user: User) {
     this.http.post(API_URL + '/register', user)
       .subscribe(response => {

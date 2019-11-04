@@ -13,5 +13,6 @@
   <a *ngIf="isAuthenticated" mat-button routerLink="/dashboard" routerLinkActive="textGreen">Dashboard</a>
   <a *ngIf="isAuthenticated" mat-button routerLink="/new-record" routerLinkActive="textGreen">Novo Registro</a>
   <a *ngIf="isAuthenticated" mat-button routerLink="/history" routerLinkActive="textGreen">Histórico</a>
+  <a *ngIf="isAuthenticated" mat-button routerLink="/settings" routerLinkActive="textGreen">Configurações</a>
   <a *ngIf="isAuthenticated" mat-button (click)="logout()" routerLinkActive="textGreen">Sair</a>
 </mat-toolbar>
