@@ -53,8 +53,7 @@ deploy-app:
     - gem install dpl
     - dpl --provider=heroku --app=nowasteapp --api-key=$HEROKU_APP_KEY
   only:
-    changes:
-      - no-waste-app/*
     refs:
       - master
       - develop
+
