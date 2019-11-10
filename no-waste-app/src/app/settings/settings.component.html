@@ -4,20 +4,25 @@
     <input matInput ngModel placeholder="Instituição" required name="institution" [(ngModel)]="settings.institution">
   </mat-form-field>
   <mat-form-field>
+    <input matInput ngModel placeholder="Média de pessoas por refeição" required name="averagePeople"
+      [(ngModel)]="settings.averagePeople" type="number" >
+  </mat-form-field>
+  <mat-form-field>
     <mat-label>Estado</mat-label>
-    <mat-select required (selectionChange)="stateChange($event)" [(value)]="settings.state" [formControl]="stateControl" [compareWith]="compareObjectsById">
-      <mat-option *ngFor="let state of states" [value]="state" >
+    <mat-select required (selectionChange)="stateChange($event)" [(value)]="settings.state" [formControl]="stateControl"
+      [compareWith]="compareObjectsById">
+      <mat-option *ngFor="let state of states" [value]="state">
         {{state.sigla}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-      <mat-label>Cidade</mat-label>
-      <mat-select required [(value)]="settings.city" [formControl]="cityControl" [compareWith]="compareObjectsById">
-        <mat-option *ngFor="let city of cities" [value]="city" >
-          {{city.nome}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <mat-label>Cidade</mat-label>
+    <mat-select required [(value)]="settings.city" [formControl]="cityControl" [compareWith]="compareObjectsById">
+      <mat-option *ngFor="let city of cities" [value]="city">
+        {{city.nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button mat-stroked-button class="btnSaveSettings">Salvar</button>
 </form>
