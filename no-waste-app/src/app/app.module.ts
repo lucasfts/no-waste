@@ -21,6 +21,8 @@ import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CreateHistoryComponent } from './create-history/create-history.component';
+import { FoodComponent } from './food/food.component';
+import { HistoryEventComponent } from './history-event/history-event.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CreateHistoryComponent } from './create-history/create-history.componen
     PieChartComponent,
     BarChartComponent,
     SettingsComponent,
-    CreateHistoryComponent
+    CreateHistoryComponent,
+    FoodComponent,
+    HistoryEventComponent
     ],
   imports: [
     BrowserModule,
@@ -49,6 +53,7 @@ import { CreateHistoryComponent } from './create-history/create-history.componen
     ChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FoodComponent, HistoryEventComponent]
 })
 export class AppModule { }

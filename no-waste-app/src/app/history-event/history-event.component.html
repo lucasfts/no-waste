@@ -1,0 +1,7 @@
+<form (submit)="saveEvent(eventForm)" #eventForm="ngForm" class="form-container">
+  <h2>Eventos</h2>
+  <mat-form-field>
+    <input matInput ngModel placeholder="Nome" required name="name" [(ngModel)]="historyEvent.name">
+  </mat-form-field>
+  <button mat-stroked-button class="btnEvent">Salvar</button>
+</form>

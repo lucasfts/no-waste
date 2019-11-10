@@ -6,6 +6,9 @@ import { GeoclimaticService } from 'src/services/geoclimatic/geoclimatic.service
 import { Settings } from 'src/models/settings.model';
 import { Meal } from 'src/models/meal';
 import { History } from 'src/models/history';
+import { MatDialog } from '@angular/material/dialog';
+import { FoodComponent } from '../food/food.component';
+import { HistoryEventComponent } from '../history-event/history-event.component';
 
 
 export interface PeriodicElement {
@@ -49,7 +52,8 @@ export class CreateHistoryComponent implements OnInit {
 
   constructor(private userService: UserService,
     private settingsService: SettingsService,
-    private geoclimateService: GeoclimaticService) { }
+    private geoclimateService: GeoclimaticService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -85,4 +89,13 @@ export class CreateHistoryComponent implements OnInit {
   saveHistory(form: NgForm) {
 
   }
+
+  foodModal() {
+    this.dialog.open(FoodComponent, { width: '50%', data: { name: null, unit: null, category: null } });
+  }
+
+  eventModal() {
+    this.dialog.open(HistoryEventComponent, { width: '50%', data: { name: null } });
+  }
+
 }

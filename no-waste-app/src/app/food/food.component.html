@@ -1,0 +1,23 @@
+<form (submit)="saveFood(foodForm)" #foodForm="ngForm" class="form-container">
+  <h2>Alimentos</h2>
+  <mat-form-field>
+    <input matInput ngModel placeholder="Nome" required name="name" [(ngModel)]="food.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Unidade</mat-label>
+    <mat-select name="unit" [(ngModel)]="food.unit" required>
+      <mat-option>
+        Gramas
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoria</mat-label>
+    <mat-select required name="category" [(ngModel)]="food.category">
+      <mat-option>
+        Massas
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-stroked-button class="btnSaveFood">Salvar</button>
+</form>
