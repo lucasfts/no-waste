@@ -6,6 +6,11 @@ mat-grid-list{
   /* background-image: url('../../assets/images/wallpaper.png'); */
   background-color: rgba(19, 206, 102, 0.91);
 }
+
+.second-row{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 .no-waste-content{
   max-width: 600px;
   margin-left: 50px;
@@ -31,9 +36,10 @@ div.btnRegistrar a{
 }
 
 .no-waste-video{
-  background-color: #E0E6ED;
-  max-width: 75%;
-  height: 250px;
+  max-width: 90%;
   margin:auto;
 }
 
+video{
+  width: 100%;
+}
