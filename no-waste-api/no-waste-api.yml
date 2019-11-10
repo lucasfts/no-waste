@@ -54,4 +54,6 @@ deploy-api-develop:
   only:
     refs:
       - develop
+     changes:
+      - no-waste-api/**
       
