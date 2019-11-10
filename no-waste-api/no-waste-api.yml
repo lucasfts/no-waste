@@ -42,18 +42,3 @@ deploy-api:
     refs:
       - master
       
-deploy-api-develop:
-  type: deploy
-  stage: deploy
-  script:
-    - cd 'no-waste-api'
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=no-waste-api --api-key=$HEROKU_API_KEY
-  only:
-    refs:
-      - develop
-     changes:
-      - no-waste-api/**
-      
