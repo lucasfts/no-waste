@@ -20,6 +20,7 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CreateHistoryComponent } from './create-history/create-history.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SettingsComponent } from './settings/settings.component';
     LineChartComponent,
     PieChartComponent,
     BarChartComponent,
-    SettingsComponent
+    SettingsComponent,
+    CreateHistoryComponent
     ],
   imports: [
     BrowserModule,

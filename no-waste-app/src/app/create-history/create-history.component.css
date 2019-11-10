@@ -1,0 +1,15 @@
+.container{
+  padding: 20px;
+}
+
+.form-container{
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+}
+.btnSaveHistory{
+  margin-top: 20px;
+  max-width: 120px;
+  color: #ffffff;
+  background-color: #969FAA;
+}

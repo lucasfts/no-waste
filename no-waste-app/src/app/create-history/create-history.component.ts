@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 
 export interface PeriodicElement {
   name: string;
@@ -16,21 +18,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  selector: 'app-create-history',
+  templateUrl: './create-history.component.html',
   styleUrls: [
     '../../assets/css/no-waste.css',
-    './dashboard.component.css'
+    './create-history.component.css'
   ]
 })
-export class DashboardComponent implements OnInit {
+export class CreateHistoryComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-
   constructor() { }
 
   ngOnInit() {
   }
 
+  saveHistory(form: NgForm){
 
+  }
 }
