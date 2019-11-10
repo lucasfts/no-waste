@@ -5,13 +5,13 @@
       <button mat-button class="bgGreen ml-10">Eventos</button>
     </div>
     <div>
-      <form (submit)="saveHistory(settngsForm)" #settngsForm="ngForm" class="form-container">
+      <form (submit)="saveHistory(historyForm)" #historyForm="ngForm" class="form-container">
         <mat-form-field class="w-50">
-          <input matInput placeholder="Horário da refeição" required>
+          <input type="time" matInput placeholder="Horário da refeição" required>
         </mat-form-field>
         <span class="mt-20">Cardápio do dia</span>
-        <div fxLayout="row" fxFlex="100%">
-          <mat-form-field fxFlex="60%">
+        <div *ngFor="let meal of history.meals; let i = index" fxLayout="row" fxFlex="100%">
+          <mat-form-field fxFlex="50%">
             <mat-label>Selecione</mat-label>
             <mat-select required>
               <mat-option>
@@ -19,17 +19,19 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field fxFlex="20%">
-            <input matInput placeholder="Qtde produzida" required>
+          <mat-form-field fxFlex="15%">
+            <input matInput placeholder="Qtde produzida" type="number" required>
           </mat-form-field>
-          <mat-form-field fxFlex="20%">
-            <input matInput placeholder="Qtde desperdiçada" required>
+          <mat-form-field fxFlex="15%">
+            <input matInput placeholder="Qtde desperdiçada" type="number" required>
           </mat-form-field>
-          <button mat-button>+</button>
-          <button mat-button>-</button>
+          <div fxFlex="20%">
+            <button mat-button *ngIf="history.meals.length == (i+1)" (click)="addMeal()" >+</button>
+            <button mat-button *ngIf="i > 0" (click)="delMeal(i)" >-</button>
+          </div>
         </div>
         <span class="mt-20">Eventos</span>
-        <div fxLayout="row" fxFlex="100%">
+        <div *ngFor="let event of history.events; let i = index" fxLayout="row" fxFlex="100%">
           <mat-form-field fxFlex="100%">
             <mat-label>Selecione</mat-label>
             <mat-select required>
@@ -38,8 +40,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-button>+</button>
-          <button mat-button>-</button>
+          <button mat-button *ngIf="history.events.length == (i+1)" (click)="addEvent()">+</button>
+          <button mat-button *ngIf="i > 0" (click)="delEvent(i)">-</button>
         </div>
         <button mat-stroked-button class="btnSaveHistory">Salvar</button>
       </form>

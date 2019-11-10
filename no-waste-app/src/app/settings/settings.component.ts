@@ -50,7 +50,6 @@ export class SettingsComponent implements OnInit {
 
     this.settingsService.getByUserId(userId)
       .then(settings => {
-        console.log("SETTINGS", settings);
         if (settings) {
           this.settings = settings;
         }
