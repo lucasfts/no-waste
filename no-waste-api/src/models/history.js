@@ -5,7 +5,7 @@ const settingsSchema = mongoose.Schema({
     settings: {type: settings.schema, required: true},
     date: {type: Date, required: true},
     wheater: { type: String, require: this.true}
-  }); 
+  });  
   
   
   module.exports = mongoose.model('Settings', settingsSchema);
