@@ -8,7 +8,7 @@ stages:
   - build
   - test
   - deploy
-  
+
 build-app:
   type: build
   stage: build
@@ -30,7 +30,7 @@ build-app:
     refs:
       - master
 
-    
+
 test-app:
   type: test
   stage: test
@@ -42,7 +42,7 @@ test-app:
       - no-waste-app/*
     refs:
       - master
-          
+
 deploy-app:
   type: deploy
   stage: deploy
@@ -57,3 +57,4 @@ deploy-app:
       - no-waste-app/*
     refs:
       - master
+      - develop

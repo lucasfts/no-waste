@@ -41,4 +41,4 @@ deploy-api:
       - no-waste-api/*
     refs:
       - master
-      
+      - develop
