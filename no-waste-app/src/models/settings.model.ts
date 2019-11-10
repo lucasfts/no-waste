@@ -3,7 +3,7 @@ import { City } from './city.model';
 
 export interface Settings {
   _id: String;
-  userId: String;
+  averagePeople: Number;
   institution: String;
   state: State;
   city: City;

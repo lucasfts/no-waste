@@ -40,17 +40,16 @@ export class SettingsComponent implements OnInit {
 
     this.settings = {
       _id: null,
-      userId: null,
+      averagePeople: null,
       institution: null,
       state: null,
       city: null
     };
 
-    this.settings.userId = this.userService.getUserId();
+    const userId = this.userService.getUserId();
 
-    this.settingsService.getByUserId(this.settings.userId)
+    this.settingsService.getByUserId(userId)
       .then(settings => {
-        console.log("SETTINGS", settings);
         if (settings) {
           this.settings = settings;
         }
@@ -61,7 +60,7 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  getStates(){
+  getStates() {
     this.geoclimateService.getStates()
       .then((states) => {
         this.states = states.sort(this.orderByNome);
@@ -117,7 +116,7 @@ export class SettingsComponent implements OnInit {
     else { return 0; }
   }
 
-  compareObjectsById(a, b){
+  compareObjectsById(a, b) {
     return a && b && a.id === b.id;
   }
 }

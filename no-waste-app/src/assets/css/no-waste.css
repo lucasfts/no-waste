@@ -17,24 +17,25 @@
   color: white;
 }
 
+.bgGreen{
+  background-color: #13ce66;
+  color: white;
+}
+
 .textGreen {
   color: #13ce66;
 }
 
 .w-100{
-  width: 100%;
+  width: 100% !important;
 }
 
 .w-50{
-  width: 50%;;
+  width: 50% !important;
 }
 
 .text-center{
   text-align: center;
-}
-
-.m-auto{
-  margin: auto;
 }
 
 .form-container {
@@ -45,4 +46,40 @@
 
 .form-container > * {
   width: 100%;
+}
+
+.m-auto{
+  margin: auto;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.ml-20{
+  margin-left: 20px;
+}
+
+.mr-10{
+  margin-right: 10px;
+}
+
+.mr-20{
+  margin-right: 20px;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.mt-20{
+  margin-top: 20px;
+}
+
+.mb-10{
+  margin-bottom: 10px;
+}
+
+.mb-20{
+  margin-bottom: 20px;
 }
