@@ -57,3 +57,4 @@ deploy-app:
       - no-waste-app/*
     refs:
       - master
+      - develop
