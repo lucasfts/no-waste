@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/services/user/user.service';
 import { SettingsService } from 'src/services/settings/settings.service';
@@ -9,6 +9,9 @@ import { History } from 'src/models/history';
 import { MatDialog } from '@angular/material/dialog';
 import { FoodComponent } from '../food/food.component';
 import { HistoryEventComponent } from '../history-event/history-event.component';
+import { Food } from 'src/models/food';
+import { FoodService } from 'src/services/food/food.service';
+import { Subscription } from 'rxjs';
 
 
 export interface PeriodicElement {
@@ -34,9 +37,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
     './create-history.component.css'
   ]
 })
-export class CreateHistoryComponent implements OnInit {
+export class CreateHistoryComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  private foodListener: Subscription;
+
+  settingsId: string;
+  foods: Food[];
 
   history: History = {
     settings: null,
@@ -46,14 +54,16 @@ export class CreateHistoryComponent implements OnInit {
       { food: null, QtdProduced: null, QtdWasted: null }
     ],
     events: [
-      { name: null }
+      null
     ]
   };
 
   constructor(private userService: UserService,
     private settingsService: SettingsService,
     private geoclimateService: GeoclimaticService,
+    private foodService: FoodService,
     public dialog: MatDialog) { }
+
 
   ngOnInit() {
 
@@ -63,10 +73,27 @@ export class CreateHistoryComponent implements OnInit {
       .then((settings: Settings) => {
         if (settings) {
           this.history.settings = settings;
+          this.settingsId = settings._id;
+          this.getFoods();
         }
 
       }).catch(error => {
 
+      });
+
+    this.foodListener = this.foodService.getFoodListener()
+      .subscribe(foods => {
+        this.foods = foods;
+      });
+  }
+
+  private getFoods() {
+    this.foodService.getBySettingsId(this.settingsId)
+      .then(foods => {
+        this.foods = foods;
+      })
+      .catch(error => {
+        this.foods = [];
       });
   }
 
@@ -79,7 +106,7 @@ export class CreateHistoryComponent implements OnInit {
   }
 
   addEvent() {
-    this.history.events.push({ name: null });
+    this.history.events.push(null);
   }
 
   delEvent(index: number) {
@@ -91,11 +118,15 @@ export class CreateHistoryComponent implements OnInit {
   }
 
   foodModal() {
-    this.dialog.open(FoodComponent, { width: '50%', data: { name: null, unit: null, category: null } });
+    this.dialog.open(FoodComponent, { width: '50%', height: '95%', data: { settingsId: this.settingsId } });
   }
 
   eventModal() {
-    this.dialog.open(HistoryEventComponent, { width: '50%', data: { name: null } });
+    this.dialog.open(HistoryEventComponent, { width: '50%', height: '95%', data: { settingsId: this.settingsId } });
+  }
+
+  ngOnDestroy(): void {
+    this.foodListener.unsubscribe();
   }
 
 }

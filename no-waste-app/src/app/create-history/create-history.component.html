@@ -12,10 +12,10 @@
         <span class="mt-20">Cardápio do dia</span>
         <div *ngFor="let meal of history.meals; let i = index" fxLayout="row" fxFlex="100%">
           <mat-form-field fxFlex="50%">
-            <mat-label>Selecione</mat-label>
+            <mat-label>Alimento</mat-label>
             <mat-select required>
-              <mat-option>
-                Arroz
+              <mat-option *ngFor="let food of foods" [value]="food" >
+                {{food.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -33,7 +33,7 @@
         <span class="mt-20">Eventos</span>
         <div *ngFor="let event of history.events; let i = index" fxLayout="row" fxFlex="100%">
           <mat-form-field fxFlex="80%">
-            <mat-label>Selecione</mat-label>
+            <mat-label>Evento</mat-label>
             <mat-select required>
               <mat-option>
                 Chuva
@@ -83,4 +83,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+
 </div>

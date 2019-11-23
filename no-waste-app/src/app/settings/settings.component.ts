@@ -100,10 +100,10 @@ export class SettingsComponent implements OnInit {
           type: 'success',
           confirmButtonText: 'Ok'
         });
-      }).catch(error => {
+      }).catch(response => {
         Swal.fire({
           title: 'Erro!',
-          text: error.message,
+          text: response.error.message,
           type: 'error',
           confirmButtonText: 'Ok'
         });

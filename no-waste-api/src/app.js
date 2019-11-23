@@ -27,9 +27,13 @@ app.use((req, res, next) => {
 const index = require('./routes/index');
 const userRoute = require('./routes/userRoute');
 const settingsRoute = require('./routes/settingsRoute');
+const foodRoute = require('./routes/foodRoute');
+
 
 app.use('/', index);
 app.use('/users', userRoute);
 app.use('/settings', settingsRoute);
+app.use('/foods', foodRoute);
+
 
 module.exports = app;
