@@ -83,3 +83,14 @@
 .mb-20{
   margin-bottom: 20px;
 }
+
+div.component-title{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.component-title span{
+  font-family: Grand Hotel;
+  font-size: 30px;
+  font-weight: 400;
+}
