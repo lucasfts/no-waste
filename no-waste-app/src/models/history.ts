@@ -5,6 +5,7 @@ import { HistoryEvent } from './history-event';
 export interface History {
   settings: Settings;
   date: Date;
+  hour: string;
   wheater: string;
   meals: Meal[];
   events: HistoryEvent[];

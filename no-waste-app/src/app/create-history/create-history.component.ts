@@ -40,28 +40,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
   ]
 })
 export class CreateHistoryComponent implements OnInit, OnDestroy {
+  history: History = {
+    settings: null,
+    date: new Date(),
+    hour: null,
+    wheater: '',
+    meals: [
+      { food: null, qtdProduced: null, qtdWasted: null }
+    ],
+    events: [
+      null
+    ]
+  };
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
   private foodListener: Subscription;
   private historyEventListener: Subscription;
 
-
   settingsId: string;
   foods: Food[];
   events: HistoryEvent[];
 
-  history: History = {
-    settings: null,
-    date: new Date(),
-    wheater: '',
-    meals: [
-      { food: null, QtdProduced: null, QtdWasted: null }
-    ],
-    events: [
-      null
-    ]
-  };
 
   constructor(private userService: UserService,
     private settingsService: SettingsService,
@@ -120,7 +121,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   addMeal() {
-    this.history.meals.push({ food: null, QtdProduced: null, QtdWasted: null });
+    this.history.meals.push({ food: null, qtdProduced: null, qtdWasted: null });
   }
 
   delMeal(index: number) {
@@ -136,7 +137,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   saveHistory(form: NgForm) {
-
+    console.log(this.history);
   }
 
   foodModal() {
