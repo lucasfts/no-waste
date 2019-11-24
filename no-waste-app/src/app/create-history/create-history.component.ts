@@ -14,22 +14,9 @@ import { FoodService } from 'src/services/food/food.service';
 import { Subscription } from 'rxjs';
 import { HistoryEventService } from 'src/services/history-event/history-event.service';
 import { HistoryEvent } from 'src/models/history-event';
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Arroz', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-];
+import { HistoryService } from 'src/services/history/history.service';
+import Swal from 'sweetalert2';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-create-history',
@@ -41,30 +28,32 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class CreateHistoryComponent implements OnInit, OnDestroy {
   history: History = {
+    _id: null,
     settings: null,
     date: new Date(),
     hour: null,
     wheater: '',
     meals: [
-      { food: null, qtdProduced: null, qtdWasted: null }
+      { food: null, qtdProduced: null, qtdWasted: null, forecast: 0 }
     ],
     events: [
       null
     ]
   };
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['food', 'forecast'];
+  dataSource =  new MatTableDataSource<Meal>(this.history.meals);
 
   private foodListener: Subscription;
   private historyEventListener: Subscription;
 
-  settingsId: string;
+  settings: Settings;
   foods: Food[];
   events: HistoryEvent[];
 
 
   constructor(private userService: UserService,
+    private historyService: HistoryService,
     private settingsService: SettingsService,
     private geoclimateService: GeoclimaticService,
     private foodService: FoodService,
@@ -80,7 +69,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
       .then((settings: Settings) => {
         if (settings) {
           this.history.settings = settings;
-          this.settingsId = settings._id;
+          this.settings = settings;
           this.getFoods();
           this.getEvents();
         }
@@ -101,7 +90,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   private getFoods() {
-    this.foodService.getBySettingsId(this.settingsId)
+    this.foodService.getBySettingsId(this.settings._id)
       .then(foods => {
         this.foods = foods;
       })
@@ -111,7 +100,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   private getEvents() {
-    this.historyEventService.getBySettingsId(this.settingsId)
+    this.historyEventService.getBySettingsId(this.settings._id)
       .then(events => {
         this.events = events;
       })
@@ -121,11 +110,13 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   addMeal() {
-    this.history.meals.push({ food: null, qtdProduced: null, qtdWasted: null });
+    this.history.meals.push({ food: null, qtdProduced: null, qtdWasted: null, forecast: 0 });
+    this.dataSource.data = this.history.meals;
   }
 
   delMeal(index: number) {
     this.history.meals.splice(index, 1);
+    this.dataSource.data = this.history.meals;
   }
 
   addEvent() {
@@ -137,19 +128,55 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   saveHistory(form: NgForm) {
-    console.log(this.history);
+    if (form.valid) {
+      this.historyService.save(this.history)
+        .then(result => {
+          this.history = {
+            _id: null,
+            settings: this.settings,
+            date: new Date(),
+            hour: null,
+            wheater: '',
+            meals: [
+              { food: null, qtdProduced: null, qtdWasted: null, forecast: 0 }
+            ],
+            events: [
+              null
+            ]
+          };
+
+          Swal.fire({
+            title: 'Histórico!',
+            text: 'Histórico salvo com sucesso',
+            type: 'success',
+            confirmButtonText: 'Ok'
+          });
+        }).catch(response => {
+          Swal.fire({
+            title: 'Erro!',
+            text: response.error.message,
+            type: 'error',
+            confirmButtonText: 'Ok'
+          });
+        });
+    }
   }
 
   foodModal() {
-    this.dialog.open(FoodComponent, { width: '50%', data: { settingsId: this.settingsId } });
+    this.dialog.open(FoodComponent, { width: '50%', data: { settingsId: this.settings._id } });
   }
 
   eventModal() {
-    this.dialog.open(HistoryEventComponent, { width: '50%', data: { settingsId: this.settingsId } });
+    this.dialog.open(HistoryEventComponent, { width: '50%', data: { settingsId: this.settings._id } });
+  }
+
+  calculateForecast(index: number) {
+    this.history.meals[index].forecast = this.settings.averagePeople * Math.round(Math.random() * 10);
   }
 
   ngOnDestroy(): void {
     this.foodListener.unsubscribe();
+    this.historyEventListener.unsubscribe();
   }
 
 }

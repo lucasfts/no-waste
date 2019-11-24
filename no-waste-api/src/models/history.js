@@ -5,7 +5,7 @@ const historyEvent = require('./historyEvent');
 
 
 const settingsSchema = mongoose.Schema({
-  settingsId: { type: settings.schema, required: true },
+  settings: { type: settings.schema, required: true },
   date: { type: Date, required: true },
   hour: { type: String, required: true },
   wheater: { type: String, require: false },
