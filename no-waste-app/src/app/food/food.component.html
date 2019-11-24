@@ -7,8 +7,8 @@
     <mat-form-field>
       <mat-label>Unidade</mat-label>
       <mat-select name="unit" [(ngModel)]="food.unit" required>
-        <mat-option *ngFor="let unidade of unidades" [value]="unidade">
-          {{unidade}}
+        <mat-option *ngFor="let unidade of unidades" [value]="unidade.value">
+          {{unidade.text}}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -17,6 +17,7 @@ import { HistoryEvent } from 'src/models/history-event';
 import { HistoryService } from 'src/services/history/history.service';
 import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
+import { ParamMap, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-history',
@@ -27,22 +28,13 @@ import { MatTableDataSource } from '@angular/material/table';
   ]
 })
 export class CreateHistoryComponent implements OnInit, OnDestroy {
-  history: History = {
-    _id: null,
-    settings: null,
-    date: new Date(),
-    hour: null,
-    wheater: '',
-    meals: [
-      { food: null, qtdProduced: null, qtdWasted: null, forecast: 0 }
-    ],
-    events: [
-      null
-    ]
-  };
+
+  isUpdate = false;
+
+  history: History = this.getNewHistory();
 
   displayedColumns: string[] = ['food', 'forecast'];
-  dataSource =  new MatTableDataSource<Meal>(this.history.meals);
+  dataSource = new MatTableDataSource<Meal>(this.history.meals);
 
   private foodListener: Subscription;
   private historyEventListener: Subscription;
@@ -58,6 +50,8 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
     private geoclimateService: GeoclimaticService,
     private foodService: FoodService,
     private historyEventService: HistoryEventService,
+    public route: ActivatedRoute,
+    public router: Router,
     public dialog: MatDialog) { }
 
 
@@ -65,18 +59,37 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
 
     const userId = this.userService.getUserId();
 
-    this.settingsService.getByUserId(userId)
-      .then((settings: Settings) => {
-        if (settings) {
-          this.history.settings = settings;
-          this.settings = settings;
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('id')) {
+        const historyId = paramMap.get('id');
+        this.isUpdate = true;
+
+        this.historyService.getHistoryById(historyId).then(history => {
+          this.history = history;
+          this.settings = history.settings;
           this.getFoods();
           this.getEvents();
-        }
+          this.dataSource.data = this.history.meals;
+        });
+      }
+      else {
+        this.settingsService.getByUserId(userId)
+          .then((settings: Settings) => {
+            if (settings) {
+              this.history.settings = settings;
+              this.settings = settings;
+              this.getFoods();
+              this.getEvents();
+            }
+            else {
+              this.router.navigate(['/settings']);
+            }
 
-      }).catch(error => {
-
-      });
+          }).catch(error => {
+            this.router.navigate(['/settings']);
+          });
+      }
+    });
 
     this.foodListener = this.foodService.getFoodListener()
       .subscribe(foods => {
@@ -110,7 +123,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   addMeal() {
-    this.history.meals.push({ food: null, qtdProduced: null, qtdWasted: null, forecast: 0 });
+    this.history.meals.push({ _id: null, food: null, qtdProduced: null, qtdWasted: null, forecast: 0 });
     this.dataSource.data = this.history.meals;
   }
 
@@ -127,30 +140,40 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
     this.history.events.splice(index, 1);
   }
 
+  getNewHistory() {
+    return {
+      _id: null,
+      settings: this.settings,
+      date: new Date(),
+      hour: null,
+      wheater: '',
+      meals: [
+        { _id: null, food: null, qtdProduced: null, qtdWasted: null, forecast: 0 }
+      ],
+      events: [
+        null
+      ]
+    };
+  }
+
   saveHistory(form: NgForm) {
     if (form.valid) {
       this.historyService.save(this.history)
         .then(result => {
-          this.history = {
-            _id: null,
-            settings: this.settings,
-            date: new Date(),
-            hour: null,
-            wheater: '',
-            meals: [
-              { food: null, qtdProduced: null, qtdWasted: null, forecast: 0 }
-            ],
-            events: [
-              null
-            ]
-          };
-
           Swal.fire({
             title: 'Histórico!',
             text: 'Histórico salvo com sucesso',
             type: 'success',
             confirmButtonText: 'Ok'
+          }).then(confirm => {
+            if (this.isUpdate) {
+              this.router.navigate(['/history']);
+            }
+            else {
+              this.history = this.getNewHistory();
+            }
           });
+
         }).catch(response => {
           Swal.fire({
             title: 'Erro!',
@@ -172,6 +195,10 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
 
   calculateForecast(index: number) {
     this.history.meals[index].forecast = this.settings.averagePeople * Math.round(Math.random() * 10);
+  }
+
+  compareObjectsById(a, b) {
+    return a && b && a._id === b._id;
   }
 
   ngOnDestroy(): void {

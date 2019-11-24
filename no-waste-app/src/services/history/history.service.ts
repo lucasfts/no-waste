@@ -15,12 +15,16 @@ export class HistoryService {
 
   constructor(private http: HttpClient) { }
 
+  getHistoryById(historyId: string){
+    return this.http.get<History>(`${API_URL}/${historyId}`).toPromise();
+  }
+
   getHistoryViewBySettingsId(settingsId) {
     return this.getHistoryViewList(settingsId);
   }
 
   private getHistoryViewList(settingsId) {
-    return this.http.get<History[]>(`${API_URL}/${settingsId}`).toPromise()
+    return this.http.get<History[]>(`${API_URL}/list/${settingsId}`).toPromise()
       .then(result => {
         return new Promise<HistoryView[]>((resolve) => {
           {
@@ -58,15 +62,15 @@ export class HistoryService {
 
               const date = new Date(history.date);
               const dateString = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-              const wastedLiters = hasWastedLiters ? totalWastedLiters : '(N/A)';
-              const wastedKg = hasWastedKg ? totalWastedKg : '(N/A)';
+              const wastedLiters = hasWastedLiters ? totalWastedLiters + ' L' : 'N/A';
+              const wastedKg = hasWastedKg ? totalWastedKg + ' Kg' : 'N/A';
 
               const historyView = {
                 _id: history._id,
                 dateHour: dateString + ' ' + history.hour,
                 totalForecast: totalForecastKg + ' Kg  |  ' + totalForecastLiters + ' L',
                 totalProduced: totalProducedKg + ' Kg  |  ' + totalProducedLiters + ' L',
-                totalWasted: wastedKg + ' Kg  |  ' + wastedLiters + ' L'
+                totalWasted: wastedKg + '  |  ' + wastedLiters
               };
 
               historyViewList.push(historyView);

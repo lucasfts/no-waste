@@ -13,9 +13,14 @@
         <div *ngFor="let meal of history.meals; let i = index" fxLayout="row" fxFlex="100%">
           <mat-form-field fxFlex="50%">
             <mat-label>Alimento</mat-label>
-            <mat-select (valueChange)="calculateForecast(i)" required [(ngModel)]="meal.food" name="food_{{i}}">
+            <mat-select *ngIf="!isUpdate" [compareWith]="compareObjectsById" (valueChange)="calculateForecast(i)" required [(ngModel)]="meal.food" name="food_{{i}}">
               <mat-option *ngFor="let food of foods" [value]="food">
                 {{food.name}}
+              </mat-option>
+            </mat-select>
+            <mat-select *ngIf="isUpdate" readonly required [(ngModel)]="meal.food" name="food_{{i}}">
+              <mat-option  [value]="meal.food">
+                {{meal.food.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -28,23 +33,28 @@
               name="qtdWasted_{{i}}">
           </mat-form-field>
           <div fxFlex="20%">
-            <button mat-button *ngIf="history.meals.length == (i+1)" (click)="addMeal()">+</button>
-            <button mat-button *ngIf="i > 0" (click)="delMeal(i)">-</button>
+            <button mat-button *ngIf="history.meals.length == (i+1) && !isUpdate" (click)="addMeal()">+</button>
+            <button mat-button *ngIf="i > 0 && !isUpdate" (click)="delMeal(i)">-</button>
           </div>
         </div>
         <span class="mt-20">Eventos</span>
         <div *ngFor="let event of history.events; let i = index" fxLayout="row" fxFlex="100%">
           <mat-form-field fxFlex="80%">
             <mat-label>Evento</mat-label>
-            <mat-select [(ngModel)]="history.events[i]" name="event_{{i}}" required>
-              <mat-option *ngFor="let event of events" [value]="event">
+            <mat-select *ngIf="!isUpdate" [compareWith]="compareObjectsById" [(ngModel)]="history.events[i]" name="event_{{i}}" required>
+              <mat-option  *ngFor="let event of events" [value]="event">
                 {{event.name}}
+              </mat-option>
+            </mat-select>
+            <mat-select *ngIf="isUpdate" [(ngModel)]="history.events[i]" name="event_{{i}}" required>
+              <mat-option [value]="history.events[i]">
+                {{history.events[i].name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <div fxFlex="20%">
-            <button mat-button *ngIf="history.events.length == (i+1)" (click)="addEvent()">+</button>
-            <button mat-button *ngIf="i > 0" (click)="delEvent(i)">-</button>
+            <button mat-button *ngIf="history.events.length == (i+1) && !isUpdate" (click)="addEvent()">+</button>
+            <button mat-button *ngIf="i > 0 && !isUpdate" (click)="delEvent(i)">-</button>
           </div>
         </div>
         <button mat-stroked-button class="btnSaveHistory">Salvar</button>

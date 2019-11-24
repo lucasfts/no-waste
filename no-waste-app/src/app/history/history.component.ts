@@ -41,10 +41,12 @@ export class HistoryComponent implements OnInit {
         if (settings) {
           this.settings = settings;
           this.getHistory();
+        } else {
+          this.router.navigate(['/settings']);
         }
 
       }).catch(error => {
-
+        this.router.navigate(['/settings']);
       });
   }
 
@@ -65,7 +67,7 @@ export class HistoryComponent implements OnInit {
     });
   }
 
-  private deleteHistoryDb(history: HistoryView){
+  private deleteHistoryDb(history: HistoryView) {
     this.historyService.delete(history).then(result => {
       this.getHistory();
       Swal.fire({

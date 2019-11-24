@@ -19,8 +19,8 @@ const CATEGORIAS_DATA = [
 ];
 
 const UNIDADES_DATA = [
-  'Kilogramas',
-  'Litros'
+  {text: 'Kilogramas', value: 'Kg'},
+  {text: 'Litros', value: 'L'}
 ];
 
 @Component({

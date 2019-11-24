@@ -13,6 +13,18 @@ exports.getBySettings = (req, res, next) => {
         });
 };
 
+exports.getById = (req, res, next) => {
+    History.findById( req.params.historyId )
+        .then(history => {
+            if (!history)
+                return res.status(404).json({ message: 'History not found' });
+            res.status(200).json(history);
+        })
+        .catch(err => {
+            res.status(500).json({ message: err.message });
+        });
+};
+
 exports.create = (req, res, next) => {
     console.log(req.body);
 
@@ -39,16 +51,15 @@ exports.create = (req, res, next) => {
 exports.update = (req, res, next) => {
     console.log(req.body);
 
-    const history = new History({
-        settings: req.body.settings,
+    const history = {
         date: req.body.date,
         hour: req.body.hour,
         wheater: req.body.wheater,
         meals: req.body.meals,
         events: req.body.events
-    });
+    };
 
-    history.updateOne({ _id: req.params.historyId })
+    History.updateOne({ _id: req.params.historyId }, { $set: history })
         .then(result => {
            if (result.n > 0) {
             res.status(201).json({
