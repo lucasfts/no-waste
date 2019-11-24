@@ -29,11 +29,13 @@ const userRoute = require('./routes/userRoute');
 const settingsRoute = require('./routes/settingsRoute');
 const foodRoute = require('./routes/foodRoute');
 const historyEventRoute = require('./routes/historyEventRoute');
+const historyRoute = require('./routes/historyRoute');
 
 app.use('/', index);
 app.use('/users', userRoute);
 app.use('/settings', settingsRoute);
 app.use('/foods', foodRoute);
 app.use('/events', historyEventRoute);
+app.use('/histories', historyRoute);
 
 module.exports = app;

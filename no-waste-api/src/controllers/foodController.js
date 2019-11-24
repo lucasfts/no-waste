@@ -1,7 +1,7 @@
 const Food = require('../models/food');
 
 exports.getBySettings = (req, res, next) => {
-    Food.find({ settingsId: req.params.settingsId })
+    Food.find({ 'settingsId': req.params.settingsId })
         .then(foods => {
             if (!foods)
                 return res.status(404).json({ message: 'Foods not found' });

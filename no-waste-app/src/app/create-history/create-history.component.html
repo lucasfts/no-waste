@@ -23,7 +23,7 @@
             <input matInput placeholder="Qtde produzida" type="number" [(ngModel)]="meal.qtdProduced" name="qtdProduced_{{i}}" required>
           </mat-form-field>
           <mat-form-field fxFlex="15%">
-            <input matInput placeholder="Qtde desperdiçada" type="number" [(ngModel)]="meal.qtdWasted" name="qtdWasted_{{i}}" required>
+            <input matInput placeholder="Qtde desperdiçada" type="number" [(ngModel)]="meal.qtdWasted" name="qtdWasted_{{i}}">
           </mat-form-field>
           <div fxFlex="20%">
             <button mat-button *ngIf="history.meals.length == (i+1)" (click)="addMeal()" >+</button>
