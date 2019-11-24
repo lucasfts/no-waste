@@ -12,6 +12,8 @@ import { HistoryEventComponent } from '../history-event/history-event.component'
 import { Food } from 'src/models/food';
 import { FoodService } from 'src/services/food/food.service';
 import { Subscription } from 'rxjs';
+import { HistoryEventService } from 'src/services/history-event/history-event.service';
+import { HistoryEvent } from 'src/models/history-event';
 
 
 export interface PeriodicElement {
@@ -42,9 +44,12 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   dataSource = ELEMENT_DATA;
 
   private foodListener: Subscription;
+  private historyEventListener: Subscription;
+
 
   settingsId: string;
   foods: Food[];
+  events: HistoryEvent[];
 
   history: History = {
     settings: null,
@@ -62,6 +67,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
     private settingsService: SettingsService,
     private geoclimateService: GeoclimaticService,
     private foodService: FoodService,
+    private historyEventService: HistoryEventService,
     public dialog: MatDialog) { }
 
 
@@ -75,6 +81,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
           this.history.settings = settings;
           this.settingsId = settings._id;
           this.getFoods();
+          this.getEvents();
         }
 
       }).catch(error => {
@@ -85,6 +92,11 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
       .subscribe(foods => {
         this.foods = foods;
       });
+
+    this.historyEventListener = this.historyEventService.getHistoryEventListener()
+      .subscribe(events => {
+        this.events = events;
+      });
   }
 
   private getFoods() {
@@ -94,6 +106,16 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
       })
       .catch(error => {
         this.foods = [];
+      });
+  }
+
+  private getEvents() {
+    this.historyEventService.getBySettingsId(this.settingsId)
+      .then(events => {
+        this.events = events;
+      })
+      .catch(error => {
+        this.events = [];
       });
   }
 
@@ -118,11 +140,11 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   foodModal() {
-    this.dialog.open(FoodComponent, { width: '50%', height: '95%', data: { settingsId: this.settingsId } });
+    this.dialog.open(FoodComponent, { width: '50%', data: { settingsId: this.settingsId } });
   }
 
   eventModal() {
-    this.dialog.open(HistoryEventComponent, { width: '50%', height: '95%', data: { settingsId: this.settingsId } });
+    this.dialog.open(HistoryEventComponent, { width: '50%', data: { settingsId: this.settingsId } });
   }
 
   ngOnDestroy(): void {

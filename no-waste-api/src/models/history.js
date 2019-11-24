@@ -7,5 +7,4 @@ const settingsSchema = mongoose.Schema({
     wheater: { type: String, require: true}
   });
   
-  
   module.exports = mongoose.model('Settings', settingsSchema);

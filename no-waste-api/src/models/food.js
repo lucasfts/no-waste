@@ -7,5 +7,4 @@ const foodSchema = mongoose.Schema({
     category: { type: String, require: true}
   });
   
-  
   module.exports = mongoose.model('Food', foodSchema);

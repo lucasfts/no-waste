@@ -28,12 +28,12 @@ const index = require('./routes/index');
 const userRoute = require('./routes/userRoute');
 const settingsRoute = require('./routes/settingsRoute');
 const foodRoute = require('./routes/foodRoute');
-
+const historyEventRoute = require('./routes/historyEventRoute');
 
 app.use('/', index);
 app.use('/users', userRoute);
 app.use('/settings', settingsRoute);
 app.use('/foods', foodRoute);
-
+app.use('/events', historyEventRoute);
 
 module.exports = app;
