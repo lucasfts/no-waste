@@ -8,11 +8,11 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Arroz', produced: 815, wasted: '5 %'},
-  {position: 2, name: 'Helium', produced: 773, wasted: '6,1 %'},
-  {position: 3, name: 'Lithium', produced: 698, wasted: '9,7 %'},
-  {position: 4, name: 'Beryllium', produced: 650, wasted: '8,9 %'},
-  {position: 5, name: 'Boron', produced: 205, wasted: '21 %'},
+  {position: 1, name: 'Frango Assado', produced: 815, wasted: '5 %'},
+  {position: 2, name: 'Macarrão ao molho', produced: 773, wasted: '6,1 %'},
+  {position: 3, name: 'Arroz', produced: 698, wasted: '9,7 %'},
+  {position: 4, name: 'Feijão', produced: 650, wasted: '8,9 %'},
+  {position: 5, name: 'Salada de frutas', produced: 205, wasted: '21 %'},
 ];
 
 @Component({
