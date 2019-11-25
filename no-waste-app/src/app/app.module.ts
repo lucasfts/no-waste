@@ -24,6 +24,7 @@ import { CreateHistoryComponent } from './create-history/create-history.componen
 import { FoodComponent } from './food/food.component';
 import { HistoryEventComponent } from './history-event/history-event.component';
 import { HistoryComponent } from './history/history.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HistoryComponent } from './history/history.component';
     CreateHistoryComponent,
     FoodComponent,
     HistoryEventComponent,
-    HistoryComponent
+    HistoryComponent,
+    AboutComponent
     ],
   imports: [
     BrowserModule,
