@@ -61,7 +61,7 @@ export class HistoryService {
               }
 
               const date = new Date(history.date);
-              const dateString = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+              const dateString = date.getUTCDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
               const wastedLiters = hasWastedLiters ? totalWastedLiters + ' L' : 'N/A';
               const wastedKg = hasWastedKg ? totalWastedKg + ' Kg' : 'N/A';
 
@@ -76,7 +76,7 @@ export class HistoryService {
               historyViewList.push(historyView);
             }
 
-            resolve(historyViewList);
+            resolve(historyViewList.reverse());
           }
         });
       })

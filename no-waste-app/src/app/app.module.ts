@@ -25,6 +25,7 @@ import { FoodComponent } from './food/food.component';
 import { HistoryEventComponent } from './history-event/history-event.component';
 import { HistoryComponent } from './history/history.component';
 import { AboutComponent } from './about/about.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,9 @@ import { AboutComponent } from './about/about.component';
     FlexLayoutModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
+  ],
   bootstrap: [AppComponent],
   entryComponents: [FoodComponent, HistoryEventComponent]
 })

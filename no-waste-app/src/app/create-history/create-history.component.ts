@@ -157,6 +157,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
   }
 
   saveHistory(form: NgForm) {
+    console.log(this.history);
     if (form.valid) {
       this.historyService.save(this.history)
         .then(result => {
@@ -171,6 +172,7 @@ export class CreateHistoryComponent implements OnInit, OnDestroy {
             }
             else {
               this.history = this.getNewHistory();
+              this.dataSource.data = this.history.meals;
             }
           });
 

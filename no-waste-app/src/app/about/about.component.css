@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+mat-card-subtitle{
+  text-align: left;
+}
+
 .about-card {
   width: 300px;
 }
