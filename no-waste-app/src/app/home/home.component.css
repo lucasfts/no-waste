@@ -1,4 +1,5 @@
 mat-grid-list{
+  height: fit-content;
   min-height: 100vh;
 }
 
@@ -38,6 +39,7 @@ div.btnRegistrar a{
 .no-waste-video{
   max-width: 90%;
   margin:auto;
+  margin-top: 0;
 }
 
 video{

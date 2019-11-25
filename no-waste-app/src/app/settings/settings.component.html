@@ -1,5 +1,7 @@
 <form (submit)="saveSettings(settingsForm)" #settingsForm="ngForm" class="form-container">
-  <h2>Configurações</h2>
+  <div class="component-title">
+    <span>Configurações</span>
+  </div>
   <mat-form-field>
     <input matInput ngModel placeholder="Instituição" required name="institution" [(ngModel)]="settings.institution">
   </mat-form-field>

@@ -4,7 +4,7 @@
     <span class="linkHome" >No-Waste</span>
   </a>
   <span class="flex-spacer"></span>
-  <a *ngIf="!isAuthenticated" mat-button routerLink="/" routerLinkActive="textGreen">
+  <a *ngIf="!isAuthenticated" mat-button routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="textGreen">
     Página inicial
   </a>
   <a *ngIf="!isAuthenticated" mat-button routerLink="/about" routerLinkActive="textGreen">Sobre</a>

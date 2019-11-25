@@ -48,10 +48,10 @@ export class UserService {
         }).then(() => {
           this.router.navigate(['/']);
         });
-      }, error => {
+      }, errorResponse => {
         Swal.fire({
           title: 'Error!',
-          text: error.message,
+          text: errorResponse.error.message,
           type: 'error',
           confirmButtonText: 'Ok'
         });
@@ -73,10 +73,10 @@ export class UserService {
           this.userAuthListener.next(this.getIsAuth());
           this.router.navigate(['/dashboard']);
         }
-      }, error => {
+      }, errorResponse => {
         this.userAuthListener.next(this.getIsAuth());
-        let alertMessage = error.message;
-        if (error.status === 404) {
+        let alertMessage = errorResponse.error.message;
+        if (errorResponse.status === 404) {
           alertMessage = 'Usuário ou senha inválidos';
         }
         Swal.fire({

@@ -83,3 +83,27 @@
 .mb-20{
   margin-bottom: 20px;
 }
+
+div.component-title{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.component-title span{
+  font-family: Grand Hotel;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.alert-danger {
+  background-color: #f44336;
+}
+.alert-success {
+  background-color: #36f456;
+}
+.alert{
+  padding: 20px;
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+}

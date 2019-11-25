@@ -1,0 +1,58 @@
+.container{
+  padding: 50px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.container-center{
+  text-align: center;
+}
+
+mat-card-subtitle{
+  text-align: left;
+}
+
+.about-card {
+  width: 300px;
+}
+
+mat-card{
+  display: inline-block;
+  margin: 10px;
+}
+
+img{
+  height: 300px;
+}
+
+mat-card-content{
+  text-align: center;
+}
+
+span.about-description{
+  font-size: 20px;
+}
+
+.about-header-image {
+  background-size: cover;
+}
+
+.boi1{
+  background-image: url('../../assets/images/boi1.jpg');
+}
+
+.boi2{
+  background-image: url('../../assets/images/boi2.jpg');
+}
+
+.boi3{
+  background-image: url('../../assets/images/boi3.jpg');
+}
+
+.boi4{
+  background-image: url('../../assets/images/boi4.jpg');
+}
+
+.boi5{
+  background-image: url('../../assets/images/boi5.jpg');
+}

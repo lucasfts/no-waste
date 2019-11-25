@@ -38,17 +38,19 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
 
+    const USER_ID = this.userService.getUserId();
+
     this.settings = {
       _id: null,
+      userId:  USER_ID,
       averagePeople: null,
       institution: null,
       state: null,
       city: null
     };
 
-    const userId = this.userService.getUserId();
 
-    this.settingsService.getByUserId(userId)
+    this.settingsService.getByUserId(USER_ID)
       .then(settings => {
         if (settings) {
           this.settings = settings;
@@ -100,10 +102,10 @@ export class SettingsComponent implements OnInit {
           type: 'success',
           confirmButtonText: 'Ok'
         });
-      }).catch(error => {
+      }).catch(response => {
         Swal.fire({
           title: 'Erro!',
-          text: error.message,
+          text: response.error.message,
           type: 'error',
           confirmButtonText: 'Ok'
         });

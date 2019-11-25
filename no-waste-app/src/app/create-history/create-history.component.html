@@ -1,84 +1,102 @@
 <div fxLayout.gt-xs="row" fxLayout.xs="column" fxFlex.gt-xs="70%" fxFlex.xs="100%" class="container">
   <div fxLayout="column" fxFlex="100%">
     <div>
-      <button mat-button class="bgGreen">Alimentos</button>
-      <button mat-button class="bgGreen ml-10">Eventos</button>
+      <button (click)="foodModal()" mat-button class="bgGreen">Alimentos</button>
+      <button (click)="eventModal()" mat-button class="bgGreen ml-10">Eventos</button>
     </div>
     <div>
       <form (submit)="saveHistory(historyForm)" #historyForm="ngForm" class="form-container">
-        <mat-form-field class="w-50">
-          <input type="time" matInput placeholder="Horário da refeição" required>
-        </mat-form-field>
+        <div fxLayout="row" fxFlex="100%">
+          <mat-form-field fxFlex="40%" class="dateField">
+              <input matInput placeholder="Data da refeição" [matDatepicker]="picker" name="date" [(ngModel)]="history.date" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex="40%">
+            <input type="time" matInput placeholder="Horário da refeição" name="hour" [(ngModel)]="history.hour"
+              required>
+          </mat-form-field>
+        </div>
         <span class="mt-20">Cardápio do dia</span>
         <div *ngFor="let meal of history.meals; let i = index" fxLayout="row" fxFlex="100%">
           <mat-form-field fxFlex="50%">
-            <mat-label>Selecione</mat-label>
-            <mat-select required>
-              <mat-option>
-                Arroz
+            <mat-label>Alimento</mat-label>
+            <mat-select *ngIf="!isUpdate" [compareWith]="compareObjectsById" (valueChange)="calculateForecast(i)"
+              required [(ngModel)]="meal.food" name="food_{{i}}">
+              <mat-option *ngFor="let food of foods" [value]="food">
+                {{food.name}}
+              </mat-option>
+            </mat-select>
+            <mat-select *ngIf="isUpdate" readonly required [(ngModel)]="meal.food" name="food_{{i}}">
+              <mat-option [value]="meal.food">
+                {{meal.food.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field fxFlex="15%">
-            <input matInput placeholder="Qtde produzida" type="number" required>
+            <input matInput placeholder="Qtde produzida" type="number" [(ngModel)]="meal.qtdProduced"
+              name="qtdProduced_{{i}}" required>
           </mat-form-field>
           <mat-form-field fxFlex="15%">
-            <input matInput placeholder="Qtde desperdiçada" type="number" required>
+            <input matInput placeholder="Qtde desperdiçada" type="number" [(ngModel)]="meal.qtdWasted"
+              name="qtdWasted_{{i}}">
           </mat-form-field>
           <div fxFlex="20%">
-            <button mat-button *ngIf="history.meals.length == (i+1)" (click)="addMeal()" >+</button>
-            <button mat-button *ngIf="i > 0" (click)="delMeal(i)" >-</button>
+            <button mat-button *ngIf="history.meals.length == (i+1) && !isUpdate" (click)="addMeal()">+</button>
+            <button mat-button *ngIf="i > 0 && !isUpdate" (click)="delMeal(i)">-</button>
           </div>
         </div>
         <span class="mt-20">Eventos</span>
         <div *ngFor="let event of history.events; let i = index" fxLayout="row" fxFlex="100%">
-          <mat-form-field fxFlex="100%">
-            <mat-label>Selecione</mat-label>
-            <mat-select required>
-              <mat-option>
-                Chuva
+          <mat-form-field fxFlex="80%">
+            <mat-label>Evento</mat-label>
+            <mat-select *ngIf="!isUpdate" [compareWith]="compareObjectsById" [(ngModel)]="history.events[i]"
+              name="event_{{i}}" required>
+              <mat-option *ngFor="let event of events" [value]="event">
+                {{event.name}}
+              </mat-option>
+            </mat-select>
+            <mat-select *ngIf="isUpdate" [(ngModel)]="history.events[i]" name="event_{{i}}" required>
+              <mat-option [value]="history.events[i]">
+                {{history.events[i].name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-button *ngIf="history.events.length == (i+1)" (click)="addEvent()">+</button>
-          <button mat-button *ngIf="i > 0" (click)="delEvent(i)">-</button>
+          <div fxFlex="20%">
+            <button mat-button *ngIf="history.events.length == (i+1) && !isUpdate" (click)="addEvent()">+</button>
+            <button mat-button *ngIf="i > 0 && !isUpdate" (click)="delEvent(i)">-</button>
+          </div>
         </div>
-        <button mat-stroked-button class="btnSaveHistory">Salvar</button>
+        <div fxLayout="row" fxFlex="100%">
+            <div fxFlex="80%" class="divSaveHistory">
+                <button mat-stroked-button class="btnSaveHistory">Salvar</button>
+            </div>
+        </div>
       </form>
     </div>
   </div>
 </div>
-<div fxLayout.gt-xs="row" fxLayout.xs="column" fxFlex.gt-xs="30%" fxFlex.xs="100%">
-  <table mat-table [dataSource]="dataSource" fxFlex="100%" >
+<div fxLayout.gt-xs="row" fxLayout.xs="column" fxFlex.gt-xs="30%" fxFlex.xs="100%" class="container container-forecast">
+  <div fxLayout="column" fxFlex="100%">
+    <div class="component-title">
+      <span>Previsão No-Waste</span>
+    </div>
+    <div>
+      <table mat-table [dataSource]="dataSource" fxFlex="100%">
+        <ng-container matColumnDef="food">
+          <th mat-header-cell *matHeaderCellDef> Alimento </th>
+          <td mat-cell *matCellDef="let element"> {{element.food ? element.food.name : '-'}} </td>
+        </ng-container>
 
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
+        <ng-container matColumnDef="forecast">
+          <th mat-header-cell *matHeaderCellDef> Previsto </th>
+          <td mat-cell *matCellDef="let element"> {{element.food ? element.forecast : '-'}}
+            {{element.food ? element.food.unit : ''}} </td>
+        </ng-container>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
 </div>

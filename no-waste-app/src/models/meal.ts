@@ -1,7 +1,9 @@
 import { Food } from './food';
 
 export interface Meal {
+  _id: string;
   food: Food;
-  QtdProduced: number;
-  QtdWasted: number;
+  qtdProduced: number;
+  qtdWasted: number;
+  forecast: number;
 }

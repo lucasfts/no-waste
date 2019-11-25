@@ -18,26 +18,26 @@
 
       <!-- Position Column -->
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <th mat-header-cell *matHeaderCellDef> # </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <th mat-header-cell *matHeaderCellDef> Descrição </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <ng-container matColumnDef="produced">
+        <th mat-header-cell *matHeaderCellDef> Produzido </th>
+        <td mat-cell *matCellDef="let element"> {{element.produced}} Kg</td>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <ng-container matColumnDef="wasted">
+        <th style="width: 20%;" mat-header-cell *matHeaderCellDef> Desperdiçado </th>
+        <td mat-cell *matCellDef="let element"> {{element.wasted}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

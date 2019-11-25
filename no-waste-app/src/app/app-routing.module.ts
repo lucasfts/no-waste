@@ -7,16 +7,20 @@ import { AppGuard } from './app.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CreateHistoryComponent } from './create-history/create-history.component';
+import { HistoryComponent } from './history/history.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AppGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AppGuard] },
   { path: 'create-history', component: CreateHistoryComponent, canActivate: [AppGuard] },
-  { path: 'edit-history/:id', component: CreateHistoryComponent, canActivate: [AppGuard] }
+  { path: 'edit-history/:id', component: CreateHistoryComponent, canActivate: [AppGuard] },
+  { path: 'history', component: HistoryComponent, canActivate: [AppGuard] }
 ];
 
 @NgModule({

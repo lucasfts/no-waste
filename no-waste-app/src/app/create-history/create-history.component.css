@@ -1,3 +1,8 @@
+span.mt-20{
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
 .container{
   padding: 30px;
 }
@@ -7,9 +12,25 @@
   margin-top: 20px;
   width: 100%;
 }
+
+.divSaveHistory{
+  text-align: left;
+}
+
 .btnSaveHistory{
   margin-top: 20px;
-  max-width: 120px;
+  width: 120px;
   color: #ffffff;
   background-color: #969FAA;
+}
+
+.container-forecast{
+  padding: 0;
+}
+
+.container-forecast{
+  margin-right: 50px;
+}
+.dateField{
+  margin-right: 10px;
 }
