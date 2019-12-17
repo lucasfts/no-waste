@@ -1,0 +1,44 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+build-api:
+  type: build
+  stage: build
+  script:
+    - cd 'no-waste-api'
+  only:
+    changes:
+      - no-waste-api/*
+    refs:
+      - master
+
+test-api:
+  type: test
+  stage: test
+  script:
+    - cd 'no-waste-api'
+  only:
+    changes:
+      - no-waste-api/*
+    refs:
+      - master
+
+deploy-api:
+  type: deploy
+  stage: deploy
+  script:
+    - cd 'no-waste-api'
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=no-waste-api --api-key=$HEROKU_API_KEY
+  only:
+    refs:
+      - master
+      - develop
+
+      

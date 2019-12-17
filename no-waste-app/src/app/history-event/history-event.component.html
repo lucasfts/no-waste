@@ -1,0 +1,35 @@
+<div>
+  <form (submit)="saveEvent(eventForm)" #eventForm="ngForm" class="form-container">
+    <h2>Eventos</h2>
+    <mat-form-field>
+      <input matInput ngModel placeholder="Nome" required name="name" [(ngModel)]="historyEvent.name">
+    </mat-form-field>
+    <button mat-stroked-button class="btnEvent">Salvar</button>
+  </form>
+</div>
+<div>
+  <div>
+    <table mat-table [dataSource]="dataSource" fxFlex="100%">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 20%;">Ações</th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;">
+          <button mat-stroked-button color="warn" (click)="deleteEvent(element)" >Excluir</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSize]="3" showFirstLastButtons></mat-paginator>
+</div>

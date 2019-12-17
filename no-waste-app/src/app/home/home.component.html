@@ -1,0 +1,31 @@
+<mat-grid-list cols="1" rows="2" rowHeight="fit">
+    <mat-grid-tile class="firstRow alignLeft">
+        <!-- Bem vindo, {{user.name}} -->
+        <div class="w-100">
+          <div class="no-waste-content">
+              <h1>
+                  Evite o desperdício de alimentos na sua instituição.
+              </h1>
+              <span>
+                  Registre-se e comece a utilizar o no-waste. Com recursos de inteligência artificial, ajudamos você a evitar o desperdício de alimentos.
+              </span>
+              <div class="btnRegistrar">
+                  <a mat-button routerLink="/register" class="bgDarkGray">Registre-se</a>
+              </div>
+          </div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="second-row">
+        <!-- Bem vindo, {{user.name}} -->
+        <div class="w-50 text-center">
+            <span class="lblFatos">
+                Fatos sobre o desperdício de alimentos no Brasil
+            </span>
+        </div>
+        <div class="w-50">
+            <div class="no-waste-video">
+              <video controls src="../../assets/videos/no-waste.mp4"></video>
+            </div>
+          </div>
+    </mat-grid-tile>
+  </mat-grid-list>

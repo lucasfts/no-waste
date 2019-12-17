@@ -1,0 +1,109 @@
+.linkHome {
+  color: #13ce66;
+  font-family: Grand Hotel;
+  font-size: 37px;
+  font-weight: 400;
+  text-align: left;
+  text-decoration: none;
+}
+
+.bgBlack {
+  background-color: black;
+  color: white;
+}
+
+.bgDarkGray{
+  background-color: #47525E;
+  color: white;
+}
+
+.bgGreen{
+  background-color: #13ce66;
+  color: white;
+}
+
+.textGreen {
+  color: #13ce66;
+}
+
+.w-100{
+  width: 100% !important;
+}
+
+.w-50{
+  width: 50% !important;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.m-auto{
+  margin: auto;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.ml-20{
+  margin-left: 20px;
+}
+
+.mr-10{
+  margin-right: 10px;
+}
+
+.mr-20{
+  margin-right: 20px;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.mt-20{
+  margin-top: 20px;
+}
+
+.mb-10{
+  margin-bottom: 10px;
+}
+
+.mb-20{
+  margin-bottom: 20px;
+}
+
+div.component-title{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.component-title span{
+  font-family: Grand Hotel;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.alert-danger {
+  background-color: #f44336;
+}
+.alert-success {
+  background-color: #36f456;
+}
+.alert{
+  padding: 20px;
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+}
